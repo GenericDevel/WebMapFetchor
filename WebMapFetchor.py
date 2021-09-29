@@ -34,7 +34,7 @@ class MapDownloader(object):
             
         self._generate_xy_point()
             
-    def wgs84toWebMercator(lon,lat):
+    def wgs84toWebMercator(self,lon,lat):
         '''WGS84转Mercator'''
         x =  lon*20037508.342789/180
         y =math.log(math.tan((90+lat)*math.pi/360))/(math.pi/180)
@@ -42,7 +42,7 @@ class MapDownloader(object):
         return x,y
     
     #WebMercator-wgs84
-    def webMercator2wgs84(x,y):
+    def webMercator2wgs84(self,x,y):
         '''Mercator转WGS84'''
         lon = x/20037508.34*180
         lat = y/20037508.34*180
@@ -51,8 +51,8 @@ class MapDownloader(object):
     
     def _generate_xy_point(self):
         '''计算起始瓦片编号'''
-        self._x_start, self._y_start = self._convert_latlon_to_xy(self.y_start, self.x_start)
-        self._x_end, self._y_end = self._convert_latlon_to_xy(self.y_end, self.x_end)
+        self._x_start, self._y_start = self._convert_latlon_to_xy(self.lat_start, self.lng_start)
+        self._x_end, self._y_end = self._convert_latlon_to_xy(self.lat_end, self.lng_end)
 
     def _convert_latlon_to_xy(self, lat, lng):
         '''根据经纬度计算瓦片编号'''
@@ -132,7 +132,8 @@ class MapDownloader(object):
 def main():
     try:
         #md = MapDownloader(-6.256524, 107.170208, -6.292112, 107.242934, zoom=17)
-        md = MapDownloader(12763042,2706157,12763697,2706831,12);
+        #md = MapDownloader(12763042,2706157,12763697,2706831,15);
+        md = MapDownloader(114.65,23.61,114.66,23.62,14);
         md.write_into('lemanabang.png')
 
         print("The map has successfully been created")
