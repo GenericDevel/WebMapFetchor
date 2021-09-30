@@ -133,7 +133,7 @@ def main():
     try:
         #md = MapDownloader(-6.256524, 107.170208, -6.292112, 107.242934, zoom=17)
         #md = MapDownloader(12763042,2706157,12763697,2706831,15);
-        md = MapDownloader(114.65,23.61,114.66,23.62,14);
+        md = MapDownloader(23.61,114.65,23.62,114.66,14);
         md.write_into('lemanabang.png')
 
         print("The map has successfully been created")
