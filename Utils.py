@@ -155,3 +155,13 @@ def tile_to_pixls(zb):
     out["LB"] = (0, -height)
     out["RB"] = (width, -height)
     return out
+
+# Check the string of x is digital chars. 
+def is_digital(x):
+    '''if x is digital string'''
+    try:
+        x=float(x);
+        #print (x);
+        return True;
+    except ValueError:
+        return False

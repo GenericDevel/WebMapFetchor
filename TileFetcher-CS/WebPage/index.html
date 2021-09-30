@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>HELLO WORLD</title>
+    <script type="text/javascript" src="http://api.tianditu.gov.cn/api?v=4.0&tk=ef6151d9f0386f3b2a2fdf1d58fe9b32"></script>
+    <script>
+        var map;
+        var zoom = 16;
+        var layer_img;
+        function onLoad() {
+            map = new T.Map('mapDiv');
+            map.centerAndZoom(new T.LngLat(112.926350, 28.164340), zoom);
+            //创建标注对象
+            var marker = new T.Marker(new T.LngLat(112.926350, 28.164340));
+            //向地图上添加标注
+            map.addOverLay(marker);
+
+            //允许鼠标滚轮缩放地图
+            map.enableScrollWheelZoom();
+
+            //add_img_layer();
+        }
+
+        function add_img_layer() {
+            var imageURL = "http://t0.tianditu.gov.cn/img_w/wmts?" +
+                "SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles" +
+                "&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=ef6151d9f0386f3b2a2fdf1d58fe9b32";
+            //创建自定义图层对象
+            layer_img = new T.TileLayer(imageURL, { minZoom: 1, maxZoom: 18 });
+            //将图层增加到地图上
+            map.addLayer(layer_img);
+            //lay.visible = false;
+        }
+
+        function remove_img_layer() {
+            map.removeLayer(layer_img);
+        }
+    </script>
+</head>
+<body onLoad="onLoad()">
+    <div id="mapDiv" style="position:absolute;width:100%; height:100%;overflow:hidden"></div>
+</body>
+</html>

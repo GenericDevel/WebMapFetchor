@@ -5,6 +5,10 @@ This code is used to download image from google
 @date  : 2020-3-13
 @author: Zheng Jie
 @E-mail: zhengjie9510@qq.com
+
+ Modify by : LiXilin
+ email     : ligq168@csu.edu.cn
+ date      : 2021/9/30/
 '''
 
 import io
@@ -174,7 +178,7 @@ def download_tiles(urls, multi=10):
 # ---------------------------------------------------------
 
 # ---------------------------------------------------------
-def main(west, north, east, south, zoom, filePath, style='s', server="Google-China"):
+def main(west, north, east, south, zoom, filePath, server="Google-China"):
     """
     Download images based on spatial extent.
 
@@ -201,7 +205,8 @@ def main(west, north, east, south, zoom, filePath, style='s', server="Google-Chi
     
     source : Google-China (default) or Google
     """
-    
+    style='s';
+       
     if math.fabs(west)>360 or math.fabs(north)>90 or math.fabs(east)>360 or math.fabs(south)>90:
         west,north=Utils.mercator_to_wgs(west,north);
         east,south=Utils.mercator_to_wgs(east,south);
@@ -234,12 +239,4 @@ def main(west, north, east, south, zoom, filePath, style='s', server="Google-Chi
           (extent['RB'][1] - extent['LT'][1]) / r.shape[0])
     saveTiff(r, g, b, gt, filePath)
 
-
-# ---------------------------------------------------------
-if __name__ == '__main__':
-    start_time = time.time()
-
-    #main(100.361, 38.866, 100.386, 38.839, 13, r'D:\Temp\test.tif', server="Google")
-    main(114.652447, 23.615226, 114.656534, 23.611870, 21, r'D:\Temp\深河创谷-GOOGLE.tif', server="Google")
-    end_time = time.time()
-    print('lasted a total of {:.2f} seconds'.format(end_time - start_time))
+# ------------ args define --------------------------------
